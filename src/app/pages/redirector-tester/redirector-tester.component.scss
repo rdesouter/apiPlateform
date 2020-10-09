@@ -1,0 +1,33 @@
+.main-grid {
+    display: grid;
+    height: 93.8vh;
+    grid-template-areas: 
+        "sidebar request"
+        "sidebar request"
+        "sidebar request"
+        "sidebar result"
+        "sidebar result"
+        ;
+
+    // grid-template-rows: auto;    
+    grid-template-columns: minmax(200px, 2fr) 8fr;
+    grid-template-rows: repeat(5,1fr);
+}
+
+request {
+    background-color: rgb(245, 245, 245);
+    grid-area: request;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    
+}
+
+result {
+    grid-area: result;
+    background-color: cadetblue;
+}
+
+collections {
+    grid-area: sidebar;
+    background-color: coral;
+}

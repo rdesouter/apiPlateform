@@ -1,0 +1,28 @@
+nav {
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+    position: relative;
+}
+
+nav a {
+    color: rgb(70, 70, 70);
+    margin-right: 10px;
+    padding: 20px 25px;
+    text-transform: uppercase;
+}
+
+.main-menu {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    // width: 60%;
+    height: 100%;
+}
+
+.activebutton {
+    color: #FFF!important;
+    background-color: rgb(70, 70, 70);
+    font-weight: 600;
+    transition: background-color 800ms ease-in-out;
+}

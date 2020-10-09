@@ -1,0 +1,56 @@
+<div class="container-1">
+    <h2>Redirector for request</h2>
+
+    <form class="form-inline" [formGroup]="getRequestForm">
+        <div class="form-group m-b-1">
+            <select name="requestType" id="requestTypeId">
+                <option value="GET" id='get'>GET</option>
+                <option value="PUT" id='put'>PUT</option>
+                <option value="POST" id='post'>POST</option>
+            </select>
+            <div class="form-control input-passive" title="not editable input">
+                <p>{{finalUrl}}</p>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="sendRequestGET()" id="send">Send</button>
+        </div>
+        <hr class="m-b-4">
+
+
+        <ul class="options-list">
+            <li *ngFor="let option of options" (click)="addOptionActive($event)" class="options" id="{{option.name}}">{{option.name}}</li>
+        </ul>
+
+        <div *ngFor="let option of options">
+            <div *ngIf='option.name == params && option.isSelected'>Params section visible</div>
+        </div>
+
+
+        <div *ngFor="let param of paramArray">
+            <p>{{param}}</p>
+        </div>
+
+
+
+        <div class="m-b-1">
+            <h2>Prepare your request below</h2>
+            <input type="search" class="form-control m-b-1" placeholder="Enter your url" formControlName="requestUrl">
+            <button (click)='addParam()' class="btn btn-primary m-r-05">+</button>
+            <button (click)='deleteParam()' class="btn btn-primary m-r-05">-</button>
+        </div>
+
+        <div class="params">
+            <div *ngFor="let number of params" class="param" id="param{{number}}">
+                <input type="checkbox" class="checkbox" id="checkbox{{number}}">
+                <input type="text" class="form-control inset" placeholder="key{{number}}" id="key{{number}}" formControlName="key{{number}}">
+                <input type="text" class="form-control inset" placeholder="value{{number}}" id="value{{number}}" formControlName="value{{number}}">
+            </div>
+            <div class="param">
+                <input type="checkbox" class="checkbox" id="checkbox-iat" formControlName="iat_checkbox">
+                <div class="form-control input-passive"><p>iat</p></div> 
+                <input type="date" class="form-control inset" formControlName="iat">    
+            </div>
+                
+        </div>
+    </form>
+    <!-- <button (click)='checkRequestForm()'>checkRequestForm</button> -->
+</div>

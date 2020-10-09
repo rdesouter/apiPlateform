@@ -1,0 +1,53 @@
+<!-- Without form control -->
+<form class="form-inline">
+	<div class="form-group">
+		<input type="search"
+		       class="form-control"
+		       placeholder="Enter search string"
+		       #search>
+	</div>
+	<button type="button" class="btn btn-primary" (click)="doSearch(search.value)">Search</button>
+</form>
+
+<!-- with formControl -->
+
+<!-- <form class="form-inline">
+	<div class="form-group">
+		<input type="search"
+           class="form-control"
+           placeholder="Enter search string"
+		       [formControl]="searchField">
+	</div>
+</form> -->
+
+<hr/>
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+
+<!-- With Promise -->
+<!-- <ul class="list-group">
+	<li class="list-group-item"
+	    *ngFor="let track of itunes.results">
+		<img src="{{track.thumbnail}}">
+		<a target="_blank"
+		   href="{{track.link}}">{{ track.name }}
+		</a>
+	</li>
+</ul> -->
+
+<!-- With Observable -->
+<ul class="list-group">
+	<li class="list-group-item"
+	    *ngFor="let track of results">
+		<img src="{{track.thumbnail}}">
+		<a target="_blank"
+		   href="{{track.link}}">{{ track.name }}
+		</a>
+	</li>
+</ul>
+<!-- <ul>
+  <li *ngFor="let track of itunes.results"> {{track.trackName}}</li>
+</ul> -->
+
+
