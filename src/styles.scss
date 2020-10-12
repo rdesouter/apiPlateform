@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;800&display=swap');
 
+$black-color: #000;
+$main-color: #0275d8;
+
 * {
     margin: 0;
     padding: 0;
@@ -69,7 +72,9 @@ a {
 .m-r-2{
     margin-right: 20px;
 }
-
+.m-b-0-5{
+    margin-bottom: 5px;
+}
 .m-b-1 {
     margin-bottom: 10px;
 }
@@ -82,6 +87,25 @@ a {
 .m-b-4 {
     margin-bottom: 40px;
 }
+
+.h-3{
+    height: 30px!important;
+}
+.h-2-5{
+    height: 25px!important;
+}
+
+.w-1 {
+    width: 10px!important;
+}
+.w-2 {
+    width: 20px!important;
+}
+.w-3 {
+    width: 30px!important;
+}
+
+
 
 .btn {
     display: inline-block;

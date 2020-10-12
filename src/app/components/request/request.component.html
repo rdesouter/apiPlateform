@@ -1,56 +1,68 @@
 <div class="container-1">
-    <h2>Redirector for request</h2>
-
+    <h2>Select the environment</h2>
     <form class="form-inline" [formGroup]="getRequestForm">
         <div class="form-group m-b-1">
-            <select name="requestType" id="requestTypeId">
-                <option value="GET" id='get'>GET</option>
-                <option value="PUT" id='put'>PUT</option>
-                <option value="POST" id='post'>POST</option>
+            <select name="requestType" id="requestTypeId" (change)="envSelected($event)" class="select-env">
+                <option *ngFor="let env of envArray" value="{{env}}" id="{{env}}">{{env}}</option>
             </select>
             <div class="form-control input-passive" title="not editable input">
-                <p>{{finalUrl}}</p>
+                <input formControlName="url" class="input-passive">
             </div>
-            <button type="button" class="btn btn-primary" (click)="sendRequestGET()" id="send">Send</button>
+
         </div>
         <hr class="m-b-4">
 
-
-        <ul class="options-list">
-            <li *ngFor="let option of options" (click)="addOptionActive($event)" class="options" id="{{option.name}}">{{option.name}}</li>
-        </ul>
-
-        <div *ngFor="let option of options">
-            <div *ngIf='option.name == params && option.isSelected'>Params section visible</div>
-        </div>
-
-
-        <div *ngFor="let param of paramArray">
-            <p>{{param}}</p>
-        </div>
-
-
-
         <div class="m-b-1">
-            <h2>Prepare your request below</h2>
-            <input type="search" class="form-control m-b-1" placeholder="Enter your url" formControlName="requestUrl">
-            <button (click)='addParam()' class="btn btn-primary m-r-05">+</button>
-            <button (click)='deleteParam()' class="btn btn-primary m-r-05">-</button>
+            <h2>Choose the parameter(s)</h2>
+            <select id="paramSelect" class="paramSelect" (change)="paramSelected($event)">
+                <option *ngFor="let param of paramArray" [value]="param" id="{{param}} ">{{param}}</option>
+            </select>
         </div>
+        <hr class="m-b-4">
 
         <div class="params">
-            <div *ngFor="let number of params" class="param" id="param{{number}}">
-                <input type="checkbox" class="checkbox" id="checkbox{{number}}">
-                <input type="text" class="form-control inset" placeholder="key{{number}}" id="key{{number}}" formControlName="key{{number}}">
-                <input type="text" class="form-control inset" placeholder="value{{number}}" id="value{{number}}" formControlName="value{{number}}">
+            <h2>Set value for parameter(s)</h2>
+            <div class="param m-b-0-5">
+                <div class="form-control input-passive">iat</div>
+                <input type="date" class="form-control inset" formControlName="iat">
             </div>
-            <div class="param">
-                <input type="checkbox" class="checkbox" id="checkbox-iat" formControlName="iat_checkbox">
-                <div class="form-control input-passive"><p>iat</p></div> 
-                <input type="date" class="form-control inset" formControlName="iat">    
+
+            <div *ngFor="let param of paramArray | slice:1 let i = index" class="param m-b-0-5">
+                <div class="form-control input-passive">{{param}}</div>
+                <input type="text" class="form-control inset" id="{{param}}" placeholder="{{param}} value">
             </div>
-                
+
+            <div *ngFor="let keyParam of paramsString" class="param m-b-0-5" id="div-keyParam">
+                <div class="form-control input-passive">{{keyParam}}</div>
+                <input type="text" class="form-control inset" placeholder="value of parameter"
+                    formControlName="{{keyParam}}-value">
+                <button class="btn btn-primary" id="{{keyParam}}-delete" (click)="deleteControl($event)">delete</button>
+            </div>
         </div>
+        <hr class="m-b-4">
+
+        <h2 class="m-b-0-5">Type of signature</h2>
+        <div class="signature m-b-1">
+            <div *ngFor="let sign of signArray" class="signature-flex m-b-1" >
+                <input type="radio" name="sign" id="{{sign}}_id" value="{{sign | uppercase}}" class="h-2-5  w-3" formControlName="sign" checked>
+                <label for="{{sign}}_id">{{sign | uppercase}}</label>
+                <div></div>
+            </div>
+        </div>
+        <hr class="m-b-4">
+
+        <!-- Warning With reactiveForm input type radio name need to be the same as formControlName -->
+        <h2 class="m-b-0-5">Sending type</h2>
+        <div class="encoding m-b-1">
+            <div *ngFor="let encoding of encodingArray" class="encoding-flex">
+                <input type="radio" name="encodingType" id="{{encoding}}_id" value="{{encoding}}" class="h-2-5 w-3" formControlName="encodingType" checked>
+                <label for="{{encoding}}_id">{{encoding}}</label>
+            </div>
+        </div>
+        <hr class="m-b-4">
+
+        <button type="button" class="btn btn-primary" (click)="sendRequestGET()" id="send">send</button>
+        
     </form>
     <!-- <button (click)='checkRequestForm()'>checkRequestForm</button> -->
 </div>
