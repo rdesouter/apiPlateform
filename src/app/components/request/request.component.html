@@ -17,17 +17,22 @@
 
 
         <ul class="options-list">
-            <li *ngFor="let option of options" (click)="addOptionActive($event)" class="options" id="{{option.name}}">{{option.name}}</li>
+            <li *ngFor="let option of options" (click)="addOptionActive($event)" class="options" id="{{option.name}} ">{{option.name}}</li>
         </ul>
 
         <div *ngFor="let option of options">
-            <div *ngIf='option.name == params && option.isSelected'>Params section visible</div>
+            <div *ngIf='option.isSelected && option.name === "params"'>
+                <h2>Section for params</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, totam. 
+                    Laboriosam consequuntur atque asperiores quo esse quod officiis laudantium nesciunt nobis voluptatem,
+                     in quasi, excepturi odio unde doloribus dolores animi.</p>
+            </div>
         </div>
 
 
-        <div *ngFor="let param of paramArray">
+        <!-- <div *ngFor="let param of paramArray">
             <p>{{param}}</p>
-        </div>
+        </div> -->
 
 
 

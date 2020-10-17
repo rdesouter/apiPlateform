@@ -1,6 +1,6 @@
 import { AfterViewChecked, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { locateHostElement } from '@angular/core/src/render3/instructions';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { optionSection } from 'src/app/models/optionSection.models';
 import { ApiService } from 'src/app/provider/api.service';
 import { Params} from '../../models/params.models';
 
@@ -17,12 +17,15 @@ export class RequestComponent implements OnInit, AfterViewChecked{
   params: number[] = [];
   options1: string[] = ['params','authtorization','headers','body'];
 
-  options: any[] = [
+  options: optionSection[] = [
     {"name": "params", "isSelected": false},
     {"name": "authtorization", "isSelected": false},
     {"name": "headers", "isSelected": false},
     {"name": "body", "isSelected": false},
   ]
+
+
+  visibleDiv:string = '';
 
 
   previousOption: string = "params";
@@ -44,6 +47,8 @@ export class RequestComponent implements OnInit, AfterViewChecked{
       iat_checkbox: ['']
     });
 
+    console.log(this.options[0].isSelected = true);
+    
 
     for( let value in this.params1){
       this.paramArray.push(value);
